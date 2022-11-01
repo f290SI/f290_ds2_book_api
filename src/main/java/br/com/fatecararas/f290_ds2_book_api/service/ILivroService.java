@@ -7,4 +7,6 @@ import br.com.fatecararas.f290_ds2_book_api.model.entity.Livro;
 public interface ILivroService {
     
     List<Livro> buscarTodos();
+
+    Livro buscarPorId(Long id);
 }
