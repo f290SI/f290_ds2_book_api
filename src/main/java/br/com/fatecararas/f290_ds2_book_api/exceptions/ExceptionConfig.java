@@ -19,4 +19,6 @@ public class ExceptionConfig {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
 
+    //TODO: Criar uma exceção customizada para falha em regra de negócios, conforme a necessidade do Service criado; caso seja necessário...
+
 }

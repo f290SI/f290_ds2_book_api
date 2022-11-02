@@ -9,4 +9,6 @@ public interface ILivroService {
     List<Livro> buscarTodos();
 
     Livro buscarPorId(Long id);
+
+    //TODO: Incluir as assinaturas dos metodos a serem implementados pelo Service.
 }
