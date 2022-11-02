@@ -22,7 +22,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("br.com.fatecararas.f290_ds2_book_api.api.v1.resource"))
-                .paths(PathSelectors.any())
+                .paths(PathSelectors.any())                
                 .build();                
     }
 
