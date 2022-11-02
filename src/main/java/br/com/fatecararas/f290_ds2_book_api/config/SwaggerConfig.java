@@ -5,6 +5,7 @@ import java.util.Collections;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
@@ -22,22 +23,22 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("br.com.fatecararas.f290_ds2_book_api.api.v1.resource"))
-                .paths(PathSelectors.any())                
-                .build();                
+                .paths(PathSelectors.any())
+                .build()
+                .apiInfo(getApiInfo());
     }
 
-    private ApiInfo apiInfo() {
-        return new ApiInfo(
-                "DS2 Book API",
-                "API de livros desenvida em Spring Boot",
-                "v1",
-                "http://www.termsofservice.com",
-                contact(), "License of API",
-                "Lincense URL",
-                Collections.emptyList());
+    private ApiInfo getApiInfo() {
+        return new ApiInfoBuilder()
+                .title("API Books Spring Boot")
+                .description("API Para gerenciamento de livros e locação")
+                .version("1.0")
+                .contact(getContact())
+                .build();
     }
 
-    private Contact contact() {
+    private Contact getContact() {
+        //TODO: Utilize suas credenciais para criação do Contato.
         return new Contact("Esdras B Silva", "https://github.com/BZR4", "bzr4@icloud.com");
     }
 
