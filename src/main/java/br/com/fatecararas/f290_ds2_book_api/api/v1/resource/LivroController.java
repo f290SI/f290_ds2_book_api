@@ -2,15 +2,21 @@ package br.com.fatecararas.f290_ds2_book_api.api.v1.resource;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.fatecararas.f290_ds2_book_api.api.v1.dto.LivroDTO;
 import br.com.fatecararas.f290_ds2_book_api.model.entity.Livro;
 import br.com.fatecararas.f290_ds2_book_api.service.LivroService;
 import io.swagger.annotations.ApiOperation;
@@ -23,6 +29,8 @@ public class LivroController {
 
     @Autowired
     private LivroService service;
+    @Autowired
+    private ModelMapper modelMapper;
     
     @ApiOperation("Retorna todos livro cadastrados.")
     @ApiResponses(value = {
@@ -53,5 +61,15 @@ public class LivroController {
     }
 
     //TODO: Criar os demais métodos para o gerenciamento de livros da API. [ criar, apagar e atualizar ] com a documentação implementada.
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    @ApiOperation("Cria um novo livro.")
+    public LivroDTO create(@RequestBody @Valid LivroDTO dto) {
+        Livro entity = modelMapper.map(dto, Livro.class);
+        entity = service.salvar(entity);
+
+        return modelMapper.map(entity, LivroDTO.class);
+    }
 
 }

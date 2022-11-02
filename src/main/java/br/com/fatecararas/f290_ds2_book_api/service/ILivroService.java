@@ -11,4 +11,6 @@ public interface ILivroService {
     Livro buscarPorId(Long id);
 
     //TODO: Incluir as assinaturas dos metodos a serem implementados pelo Service.
+
+    Livro salvar(Livro livro);
 }

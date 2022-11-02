@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.fatecararas.f290_ds2_book_api.exceptions.BusinessException;
 import br.com.fatecararas.f290_ds2_book_api.exceptions.ObjectNotFoundException;
 import br.com.fatecararas.f290_ds2_book_api.model.entity.Livro;
 import br.com.fatecararas.f290_ds2_book_api.repository.LivroRepository;
@@ -32,6 +33,16 @@ public class LivroService implements ILivroService{
         return optLivro.get();
     }
 
+    @Override
+    public Livro salvar(Livro livro) {
+        if(repository.existsByIsbn(livro.getIsbn())) {
+            throw new BusinessException("Isbn já cadastrado.");
+        }
+        return repository.save(livro);
+    }
+
     //TODO: Criar os metodos necessários para o gerenciamento de livros [ criar, apagar e atualizar ]
+
+    
     
 }
