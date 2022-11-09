@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import br.com.fatecararas.f290_ds2_book_api.api.v1.dto.LivroDTO;
+
 @Entity
 public class Livro {
     
@@ -29,6 +31,13 @@ public class Livro {
         this.titulo = titulo;
         this.autor = autor;
         this.isbn = isbn;
+    }
+
+    public Livro(LivroDTO livroDTO) {
+        this.id = livroDTO.getId();
+        this.autor = livroDTO.getAutor();
+        this.titulo = livroDTO.getTitulo();
+        this.isbn = livroDTO.getIsbn();
     }
     
     public Long getId() {

@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ExceptionConfig {
 
-    @ExceptionHandler(ObjectNotFoundException.class)
+    @ExceptionHandler({
+        ObjectNotFoundException.class, 
+        IllegalArgumentException.class
+    })
     public ResponseEntity<StandardError> notFoundException(ObjectNotFoundException ex,
             HttpServletRequest request) {
         StandardError error = new StandardError(System.currentTimeMillis(),

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fatecararas.f290_ds2_book_api.api.v1.dto.LivroDTO;
+import br.com.fatecararas.f290_ds2_book_api.exceptions.ObjectNotFoundException;
 import br.com.fatecararas.f290_ds2_book_api.model.entity.Livro;
 import br.com.fatecararas.f290_ds2_book_api.service.LivroService;
 import io.swagger.annotations.ApiOperation;
@@ -39,10 +40,10 @@ public class LivroController {
     })
     @GetMapping("/todos")
     public ResponseEntity<?> findAll() {
-        List<Livro> livros = service.buscarTodos();
+        List<LivroDTO> livros = service.buscarTodos();
 
         if (livros.isEmpty()) {
-            return ResponseEntity.notFound().build();
+            throw new ObjectNotFoundException("Ainda não existem livros cadastrados.");
         }
 
         return ResponseEntity.ok().body(livros);
@@ -55,9 +56,8 @@ public class LivroController {
     })
     @ResponseStatus(code = HttpStatus.OK)
     @GetMapping("/{id}")
-    public Livro findById(@PathVariable("id") Long id) {
-        Livro livro = service.buscarPorId(id);
-        return livro;
+    public LivroDTO findById(@PathVariable("id") Long id) {
+        return service.buscarPorId(id);
     }
 
     //TODO: Criar os demais métodos para o gerenciamento de livros da API. [ criar, apagar e atualizar ] com a documentação implementada.
