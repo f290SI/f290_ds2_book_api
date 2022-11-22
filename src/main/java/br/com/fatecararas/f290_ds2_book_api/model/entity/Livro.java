@@ -32,7 +32,7 @@ public class Livro {
     private String isbn;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "livro", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "livro", fetch = FetchType.EAGER)
     private List<Locacao> locacoes = Collections.emptyList();
 
     public Livro() {
@@ -119,6 +119,6 @@ public class Livro {
             return false;
         return true;
     }
-    
+
 
 }
