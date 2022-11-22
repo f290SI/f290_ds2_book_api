@@ -1,10 +1,17 @@
 package br.com.fatecararas.f290_ds2_book_api.model.entity;
 
+import java.util.Collections;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.fatecararas.f290_ds2_book_api.api.v1.dto.LivroDTO;
 
@@ -23,6 +30,10 @@ public class Livro {
 
     @Column(length = 50, nullable = false)
     private String isbn;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "livro", fetch = FetchType.LAZY)
+    private List<Locacao> locacoes = Collections.emptyList();
 
     public Livro() {
     }
@@ -84,6 +95,14 @@ public class Livro {
         return result;
     }
 
+    public List<Locacao> getLocacoes() {
+        return locacoes;
+    }
+
+    public void setLocacoes(List<Locacao> locacoes) {
+        this.locacoes = locacoes;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -100,9 +119,6 @@ public class Livro {
             return false;
         return true;
     }
-
-
-    
     
 
 }
