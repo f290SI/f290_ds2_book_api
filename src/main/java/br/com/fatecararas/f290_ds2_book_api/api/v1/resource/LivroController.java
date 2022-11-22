@@ -28,11 +28,14 @@ import io.swagger.annotations.ApiResponses;
 @RequestMapping("/api/v1/livro")
 public class LivroController {
 
-    @Autowired
-    private LivroService service;
-    @Autowired
-    private ModelMapper modelMapper;
-    
+    private final LivroService service;
+    private final ModelMapper modelMapper;
+  
+    public LivroController(LivroService service, ModelMapper modelMapper) {
+        this.service = service;
+        this.modelMapper = modelMapper;
+    }
+
     @ApiOperation("Retorna todos livro cadastrados.")
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Livros recuperados com sucesso."),
@@ -62,7 +65,7 @@ public class LivroController {
 
     //TODO: Criar os demais métodos para o gerenciamento de livros da API. [ criar, apagar e atualizar ] com a documentação implementada.
 
-    @PostMapping
+    @PostMapping("/novo")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation("Cria um novo livro.")
     public LivroDTO create(@RequestBody @Valid LivroDTO dto) {

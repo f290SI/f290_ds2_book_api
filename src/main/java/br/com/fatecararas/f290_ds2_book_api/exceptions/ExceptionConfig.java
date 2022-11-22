@@ -31,6 +31,6 @@ public class ExceptionConfig {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
-    //TODO: Criar uma exceção customizada para falha em regra de negócios, conforme a necessidade do Service criado; caso seja necessário...
+    //TODO: [OPCIONAL] - Criar uma exceção customizada para falha em regra de negócios, conforme a necessidade do Service criado; caso seja necessário...
 
 }

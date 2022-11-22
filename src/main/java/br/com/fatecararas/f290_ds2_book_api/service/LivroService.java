@@ -1,7 +1,6 @@
 package br.com.fatecararas.f290_ds2_book_api.service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
