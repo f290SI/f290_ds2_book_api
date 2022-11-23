@@ -26,6 +26,9 @@ public class F290Ds2BookApiApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		List<Locacao> locacoes = service.buscarLocacoesPorEmail("bzr4@icloud.com");
 		System.out.println(locacoes);
+		locacoes.forEach(l -> {
+			System.out.println(l.getLivro().getTitulo());
+		});
 		
 	}
 }
