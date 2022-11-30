@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.fatecararas.f290_ds2_book_api.api.v1.dto.LivroDTO;
 import br.com.fatecararas.f290_ds2_book_api.exceptions.ObjectNotFoundException;
 import br.com.fatecararas.f290_ds2_book_api.model.entity.Livro;
-import br.com.fatecararas.f290_ds2_book_api.service.LivroService;
+import br.com.fatecararas.f290_ds2_book_api.service.impl.LivroService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;

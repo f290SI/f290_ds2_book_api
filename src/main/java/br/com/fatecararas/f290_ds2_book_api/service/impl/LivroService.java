@@ -1,4 +1,4 @@
-package br.com.fatecararas.f290_ds2_book_api.service;
+package br.com.fatecararas.f290_ds2_book_api.service.impl;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,6 +12,7 @@ import br.com.fatecararas.f290_ds2_book_api.exceptions.BusinessException;
 import br.com.fatecararas.f290_ds2_book_api.exceptions.ObjectNotFoundException;
 import br.com.fatecararas.f290_ds2_book_api.model.entity.Livro;
 import br.com.fatecararas.f290_ds2_book_api.repository.LivroRepository;
+import br.com.fatecararas.f290_ds2_book_api.service.ILivroService;
 
 @Service
 public class LivroService implements ILivroService {

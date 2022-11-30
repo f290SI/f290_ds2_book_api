@@ -8,7 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.fatecararas.f290_ds2_book_api.model.entity.Locacao;
-import br.com.fatecararas.f290_ds2_book_api.service.LocacaoService;
+import br.com.fatecararas.f290_ds2_book_api.service.impl.LocacaoService;
 
 @SpringBootApplication
 public class F290Ds2BookApiApplication implements CommandLineRunner{

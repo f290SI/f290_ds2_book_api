@@ -21,7 +21,7 @@ public class Locacao {
     private String email;
     private LocalDate dataLocacao;
     @Column(columnDefinition = "boolean default false")
-    private Boolean devolvido;
+    private Boolean devolvido = false;
 
     @ManyToOne
     @JoinColumn(name = "id_livro")

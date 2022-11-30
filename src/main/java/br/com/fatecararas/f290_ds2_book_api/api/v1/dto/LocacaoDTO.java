@@ -2,6 +2,8 @@ package br.com.fatecararas.f290_ds2_book_api.api.v1.dto;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class LocacaoDTO {
 
     private Long id;
@@ -9,6 +11,8 @@ public class LocacaoDTO {
     private String email;
     private LocalDate dataLocacao;
     private Boolean devolvido;
+    @JsonProperty("livro")
+    private LivroDTO livroDTO;
 
     public LocacaoDTO() {
     }
@@ -44,6 +48,14 @@ public class LocacaoDTO {
         this.devolvido = devolvido;
     }
 
+    public LivroDTO getLivroDTO() {
+        return livroDTO;
+    }
+
+    public void setLivroDTO(LivroDTO livroDTO) {
+        this.livroDTO = livroDTO;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -68,7 +80,5 @@ public class LocacaoDTO {
             return false;
         return true;
     }
-
-    
     
 }
