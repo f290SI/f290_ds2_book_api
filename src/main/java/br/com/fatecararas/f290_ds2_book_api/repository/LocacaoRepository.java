@@ -18,7 +18,13 @@ public interface LocacaoRepository extends JpaRepository<Locacao, Long> {
     //TODO: Implementar busca
     // public List<Locacao> buscarLocacoesPorIsbnOuNome(String isbn, String aluno);
     
-    @Query("SELECT lc FROM Locacao lc INNER JOIN lc.livro l WHERE lc.email = :email")
-    public List<Locacao> findByEmail(@Param(value = "email") String email);
+    // @Query("SELECT lc FROM Locacao lc INNER JOIN lc.livro l WHERE lc.email = :email")
+    // public List<Locacao> findByEmail(@Param(value = "email") String email);
+
+    @Query(value = "SELECT * FROM LOCACAO lc INNER JOIN livro l ON l.id = lc.id_livro WHERE l.isbn = :isbn AND lc.devolvido = false", nativeQuery = true)
+    public Locacao findByIsbn(@Param(value = "isbn") String isbn);
+
+    @Query(value = "SELECT * FROM LOCACAO lc WHERE lc.devolvido = false", nativeQuery = true)
+    public List<Locacao> findAll();
     
 }
