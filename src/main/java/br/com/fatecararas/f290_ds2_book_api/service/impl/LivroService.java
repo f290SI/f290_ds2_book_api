@@ -1,6 +1,7 @@
 package br.com.fatecararas.f290_ds2_book_api.service.impl;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -40,10 +41,24 @@ public class LivroService implements ILivroService {
                         .format("Livro não localizado. ID: %s", id)));
     }
 
+    public Livro buscarLivroPorId(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException(String
+                        .format("Livro não localizado. ID: %s", id)));
+    }
+
     @Override
     public Livro salvar(Livro livro) {
         if (repository.existsByIsbn(livro.getIsbn())) {
             throw new BusinessException("Isbn já cadastrado.");
+        }
+        return repository.save(livro);
+    }
+
+    @Override
+    public Livro atualizar(Livro livro) {
+        if (Objects.isNull(livro) || Objects.isNull(livro.getId())) {
+            throw new BusinessException("Livro inválido.");
         }
         return repository.save(livro);
     }

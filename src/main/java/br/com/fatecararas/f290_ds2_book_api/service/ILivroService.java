@@ -14,4 +14,6 @@ public interface ILivroService {
     //TODO: Incluir as assinaturas dos metodos a serem implementados pelo Service.
 
     Livro salvar(Livro livro);
+
+    Livro atualizar(Livro livro);
 }

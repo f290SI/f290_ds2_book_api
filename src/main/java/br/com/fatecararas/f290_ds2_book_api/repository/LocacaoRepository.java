@@ -12,13 +12,12 @@ import br.com.fatecararas.f290_ds2_book_api.model.entity.Locacao;
 @Repository
 public interface LocacaoRepository extends JpaRepository<Locacao, Long> {
 
-    // @Query(value = "SELECT * FROM LOCACAO lc INNER JOIN livro l ON l.id = lc.id_livro WHERE lc.email = :email", nativeQuery = true)
-    // public List<Locacao> buscarLocacaoPorEmail(@Param(value = "email") String email);
+    @Query(value = "SELECT * FROM locacao lc "
+            + "INNER JOIN livro l ON l.id = lc.id_livro " 
+            + "WHERE l.isbn = :isbn AND lc.devolvido = false", nativeQuery = true)
+    Locacao findByIsbn(@Param(value = "isbn") String isbn);
 
-    //TODO: Implementar busca
-    // public List<Locacao> buscarLocacoesPorIsbnOuNome(String isbn, String aluno);
-    
-    @Query("SELECT lc FROM Locacao lc INNER JOIN lc.livro l WHERE lc.email = :email")
-    public List<Locacao> findByEmail(@Param(value = "email") String email);
-    
+    @Query(value = "SELECT * FROM locacao lc WHERE lc.devolvido = false", nativeQuery = true)
+    List<Locacao> findAll();
+
 }

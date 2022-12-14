@@ -5,16 +5,20 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.hibernate.validator.constraints.ISBN;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.fatecararas.f290_ds2_book_api.api.v1.dto.DevolucaoDTO;
 import br.com.fatecararas.f290_ds2_book_api.api.v1.dto.LivroDTO;
 import br.com.fatecararas.f290_ds2_book_api.api.v1.dto.LocacaoDTO;
 import br.com.fatecararas.f290_ds2_book_api.model.entity.Livro;
@@ -52,6 +56,14 @@ public class LocacaoController {
                 .setEmail(dto.getEmail());
 
         return service.salvar(locacao);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PatchMapping("/devolucao/{isbn}")
+    public void baixar(@PathVariable("isbn") String isbn,
+            @Valid @RequestBody DevolucaoDTO dto) {
+                
+        service.baixarLocacao(isbn, dto);
     }
 
 }
